@@ -1,6 +1,6 @@
 import { $ } from "../../core/dom"
 
-export function resizeHandler ($root, event) {
+export function resizeHandler($root, event) {
     const $resizer = $(event.target)
     const $parent = $resizer.closest('[data-type="resizable"]')
     const coords = $parent.getCoords()
@@ -34,7 +34,7 @@ export function resizeHandler ($root, event) {
 
         if (type === 'col') {
             $parent.css({ width: value + 'px' })
-            const cells = this.$root.findAll(`[data-col="${$parent.data.col}"]`)
+            $root.findAll(`[data-col="${$parent.data.col}"]`)
                 .forEach(el => el.style.width = value + 'px')
         } else {
             $parent.css({ height: value + 'px' })
