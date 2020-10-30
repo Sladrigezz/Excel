@@ -7,7 +7,7 @@ import './scss/index.scss'
 import { createStore } from './core/createStore'
 import { rootReducer } from './redux/rootReducer'
 
-const ctore = createStore(rootReducer)
+const store = createStore(rootReducer)
 
 const excel = new Excel('#app', {
   components: [Header, Toolbar, Formula, Table], store
