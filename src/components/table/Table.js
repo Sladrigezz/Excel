@@ -1,12 +1,12 @@
 import { ExcelComponent } from '@core/ExcelComponent'
-import { createTable } from './table.template'
-import { resizeHandler } from './table.resize'
+import { $ } from '@core/dom'
+import { createTable } from '@/components/table/table.template'
+import { resizeHandler } from '@/components/table/table.resize'
 import { isCell, matrix, nextSelector, shouldResize } from './table.functions'
-import { TableSelection } from './TableSelection'
-import { $ } from '../../core/dom'
-import * as actions from '../../redux/actions'
-import { defaultStyles } from '../../constants'
-import { parse } from '../../core/parse'
+import { TableSelection } from '@/components/table/TableSelection'
+import * as actions from '@/redux/actions'
+import { defaultStyles } from '@/constants'
+import { parse } from '@core/parse'
 
 export class Table extends ExcelComponent {
   static className = 'excel__table'
@@ -20,7 +20,7 @@ export class Table extends ExcelComponent {
   }
 
   toHTML() {
-    return createTable(30, this.store.getState())
+    return createTable(20, this.store.getState())
   }
 
   prepare() {
@@ -30,8 +30,7 @@ export class Table extends ExcelComponent {
   init() {
     super.init()
 
-    const $cell = this.$root.find('[data-id="0:0"]')
-    this.selectCell($cell)
+    this.selectCell(this.$root.find('[data-id="0:0"]'))
 
     this.$on('formula:input', value => {
       this.selection.current
@@ -56,8 +55,7 @@ export class Table extends ExcelComponent {
   selectCell($cell) {
     this.selection.select($cell)
     this.$emit('table:select', $cell)
-    const styles = ($cell.getStyles(Object.keys(defaultStyles)))
-    console.log('Styles to dispatch', styles);
+    const styles = $cell.getStyles(Object.keys(defaultStyles))
     this.$dispatch(actions.changeStyles(styles))
   }
 
@@ -66,7 +64,7 @@ export class Table extends ExcelComponent {
       const data = await resizeHandler(this.$root, event)
       this.$dispatch(actions.tableResize(data))
     } catch (e) {
-      console.warn('Resize error', e.message);
+      console.warn('Resize error', e.message)
     }
   }
 
@@ -86,7 +84,14 @@ export class Table extends ExcelComponent {
   }
 
   onKeydown(event) {
-    const keys = ['Enter', 'Tab', 'ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown']
+    const keys = [
+      'Enter',
+      'Tab',
+      'ArrowLeft',
+      'ArrowRight',
+      'ArrowDown',
+      'ArrowUp'
+    ]
 
     const { key } = event
 
@@ -109,9 +114,3 @@ export class Table extends ExcelComponent {
     this.updateTextInStore($(event.target).text())
   }
 }
-
-
-
-
-
-

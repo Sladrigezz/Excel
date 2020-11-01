@@ -11,10 +11,9 @@ export class ExcelComponent extends DomListener {
 
     this.prepare()
   }
-  // Настраиваем наш компонент до init
-  prepare() {
 
-  }
+  // Настраивааем наш компонент до init
+  prepare() { }
 
   // Возвращает шаблон компонента
   toHTML() {
@@ -37,9 +36,7 @@ export class ExcelComponent extends DomListener {
   }
 
   // Сюда приходят только изменения по тем полям, на которые мы подписались
-  storeChanged() {
-
-  }
+  storeChanged() { }
 
   isWatching(key) {
     return this.subscribe.includes(key)
@@ -52,7 +49,7 @@ export class ExcelComponent extends DomListener {
   }
 
   // Удаляем компонент
-  // Чистим слушателей
+  // Чистим слушатели
   destroy() {
     this.removeDOMListeners()
     this.unsubscribers.forEach(unsub => unsub())
