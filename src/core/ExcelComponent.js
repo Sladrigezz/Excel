@@ -1,4 +1,4 @@
-import { DomListener } from '@core/DomListener'
+import {DomListener} from '@core/DomListener'
 
 export class ExcelComponent extends DomListener {
   constructor($root, options = {}) {
@@ -13,7 +13,7 @@ export class ExcelComponent extends DomListener {
   }
 
   // Настраивааем наш компонент до init
-  prepare() { }
+  prepare() {}
 
   // Возвращает шаблон компонента
   toHTML() {
@@ -36,7 +36,7 @@ export class ExcelComponent extends DomListener {
   }
 
   // Сюда приходят только изменения по тем полям, на которые мы подписались
-  storeChanged() { }
+  storeChanged() {}
 
   isWatching(key) {
     return this.subscribe.includes(key)
