@@ -1,7 +1,7 @@
-import { createToolbar } from './toolbar.template'
-import { $ } from '@core/dom'
-import { ExcelStateComponent } from '../../core/ExcelStateComponent'
-import { defaultStyles } from '../../constants'
+import {createToolbar} from '@/components/toolbar/toolbar.template'
+import {$} from '@core/dom'
+import {ExcelStateComponent} from '@core/ExcelStateComponent'
+import {defaultStyles} from '@/constants'
 
 export class Toolbar extends ExcelStateComponent {
   static className = 'excel__toolbar'
@@ -27,7 +27,7 @@ export class Toolbar extends ExcelStateComponent {
     return this.template
   }
 
-  storeChanged(changes){
+  storeChanged(changes) {
     this.setState(changes.currentStyles)
   }
 
