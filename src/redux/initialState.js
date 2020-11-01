@@ -1,5 +1,5 @@
 import { defaultStyles, defaultTitle } from "../constants"
-import { storage } from "../core/utils"
+import { clone } from "../core/utils"
 
 const defaultState = {
     title: defaultTitle,
@@ -19,6 +19,6 @@ const normasize = state => ({
     currentText: ''
 })
 
-export const initialState = storage('excel-state')
-    ? normasize(storage('excel-state'))
-    : defaultState
+export function normalizeInitialState(state) {
+    return state ? normasize(state) : clone(defaultState)
+}
